@@ -1,4 +1,5 @@
 #include "minishell.h"
+#include <cstdio>
 #include <readline/readline.h>
 #include <stdio.h>
 
@@ -16,5 +17,6 @@ int	main(void)
 			printf("%s\n", input);
 		}
 	}
+	free(input);
 	return (0);
 }
