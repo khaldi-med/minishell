@@ -1,7 +1,9 @@
 #include "minishell.h"
-#include <cstdio>
+// #include <cstdio.h>
+#include <readline/history.h>
 #include <readline/readline.h>
 #include <stdio.h>
+#include <string.h>
 
 int	main(void)
 {
@@ -10,11 +12,17 @@ int	main(void)
 	while (1)
 	{
 		input = readline(PROMPT);
-		if (input)
+		if (input && *input)
 		{
 			//parse(input)
 			//execute(input)
+			add_history(input);
 			printf("%s\n", input);
+		}
+		else
+		{
+			// 			stderr("ERROR!");
+			return (1);
 		}
 	}
 	free(input);
