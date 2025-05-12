@@ -17,4 +17,10 @@
 
 # define PROMPT "minishell$ "
 
+typedef struct s_cmd
+{
+	int		i;
+	char	*ptr;
+}			t_cmd;
+
 #endif

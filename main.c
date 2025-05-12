@@ -11,6 +11,8 @@ int	main(void)
 		input = readline(PROMPT);
 		if (input)
 		{
+			//parse(input)
+			//execute(input)
 			printf("%s\n", input);
 		}
 	}
