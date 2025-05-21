@@ -1,5 +1,5 @@
 #include "minishell.h"
-//#include <cstdio.h>
+// #include <cstdio.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 #include <stdio.h>
@@ -14,8 +14,8 @@ int	main(void)
 		input = readline(PROMPT);
 		if (input && *input)
 		{
-			//parse(input)
-			//execute(input)
+			// parse(input)
+			// execute(input)
 			add_history(input);
 			printf("%s\n", input);
 		}

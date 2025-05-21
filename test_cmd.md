@@ -4,3 +4,5 @@
     world'`
 
 * `>filename`
+
+* `<<'s'`

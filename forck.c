@@ -1,5 +1,6 @@
-#include "minishell.h"
+// #include "minishell.h"
 #include <fcntl.h>
+#include <stdio.h>
 #include <unistd.h>
 
 int	main(void)
