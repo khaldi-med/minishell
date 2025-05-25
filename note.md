@@ -28,4 +28,4 @@ allocated to the process, a list of open files, and so on.
 In brief, the PCB simply serves as the repository for all the data needed to start,
 or restart, a process, along with some accounting data.
 
-
+> `Processes allocate memory in two major ways: by exec and programmatically. Actually, forking is a third way, but it’s not very interesting. See Creating a Process.`
