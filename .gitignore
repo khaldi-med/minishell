@@ -1,5 +1,4 @@
 *.o
 *.out
 *.s
-*.gch
-functions_job
+./minishell
