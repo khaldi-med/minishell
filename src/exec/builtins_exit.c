@@ -1,0 +1,51 @@
+#include "../../include/minishell.h"
+
+static int	ft_is_valid_numb(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	if (str[0] == '+' || str[0] == '-')
+		i = 1;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ft_builtin_exit(t_shell *shell, char **args)
+{
+	long	exit_code;
+
+	ft_putstr_fd("exit\n", 2);
+	if (args[1])
+	{
+		if (!ft_is_valid_numb(args[1]))
+		{
+			ft_putstr_fd("exit: ", 2);
+			ft_putstr_fd(args[1], 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
+			ft_cleanup_shell(shell);
+			rl_clear_history();
+			exit(2);
+		}
+		if (args[2])
+		{
+			ft_putstr_fd("exit: too many arguments\n", 2);
+			return (1);
+		}
+		exit_code = ft_atoi(args[1]);
+	}
+	else
+		exit_code = shell->exit_status;
+	ft_cleanup_shell(shell);
+	rl_clear_history();
+	exit((unsigned char)exit_code);
+}

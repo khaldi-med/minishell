@@ -1,0 +1,149 @@
+#include "../../include/minishell.h"
+
+int	ft_skip_space(char *input, int i)
+{
+	while (input[i] && (input[i] == ' ' || input[i] == '\t'))
+		i++;
+	return (i);
+}
+
+t_token	*ft_creat_token(char *value, t_token_type type)
+{
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
+	if (!token)
+		return (NULL);
+	token->value = ft_strdup(value);
+	token->type = type;
+	token->next = NULL;
+	return (token);
+}
+
+void	ft_add_token(t_token **tokens, t_token *new_token)
+{
+	t_token	*current;
+
+	if (!*tokens)
+	{
+		*tokens = new_token;
+		return ;
+	}
+	current = *tokens;
+	while (current->next)
+		current = current->next;
+	current->next = new_token;
+}
+
+static t_token_type	ft_get_redir_type(char *input, int *i)
+{
+	if (input[*i] == '<')
+	{
+		if (input[*i + 1] == '<')
+		{
+			(*i)++;
+			return (TOKEN_HEREDOC);
+		}
+		return (TOKEN_REDIR_IN);
+	}
+	else if (input[*i] == '>')
+	{
+		if (input[*i + 1] == '>')
+		{
+			(*i)++;
+			return (TOKEN_REDIR_APPEND);
+		}
+		return (TOKEN_REDIR_OUT);
+	}
+	return (TOKEN_WORD);
+}
+
+static t_token	*ft_handle_redirection(char *input, int *i)
+{
+	t_token_type	type;
+	t_token			*token;
+
+	type = ft_get_redir_type(input, i);
+	if (type == TOKEN_HEREDOC)
+		token = ft_creat_token("<<", type);
+	else if (type == TOKEN_REDIR_APPEND)
+		token = ft_creat_token(">>", type);
+	else if (type == TOKEN_REDIR_IN)
+		token = ft_creat_token("<", type);
+	else
+		token = ft_creat_token(">", type);
+	(*i)++;
+	return (token);
+}
+
+static t_token	*ft_handle_pipe(int *i)
+{
+	(*i)++;
+	return (ft_creat_token("|", TOKEN_PIPE));
+}
+
+static char	*ft_extract_word(char *input, int *i)
+{
+	int		start;
+	int		len;
+	char	*word;
+	char	quote;
+
+	start = *i;
+	quote = 0;
+	while (input[*i])
+	{
+		if (!quote && (input[*i] == '\'' || input[*i] == '"'))
+			quote = input[*i];
+		else if (quote && input[*i] == quote)
+			quote = 0;
+		else if (!quote &&
+					(input[*i] == ' ' || input[*i] == '\t' || input[*i] == '<'
+							||
+					input[*i] == '>' || input[*i] == '|'))
+			break ;
+		(*i)++;
+	}
+	len = *i - start;
+	word = malloc(len + 1);
+	if (!word)
+		return (NULL);
+	ft_strlcpy(word, input + start, len + 1);
+	word[len] = '\0';
+	return (word);
+}
+
+static t_token	*ft_handle_word(char *input, int *i)
+{
+	char	*word;
+	t_token	*token;
+
+	word = ft_extract_word(input, i);
+	token = ft_creat_token(word, TOKEN_WORD);
+	free(word);
+	return (token);
+}
+
+t_token	*ft_tokenize(char *input)
+{
+	t_token	*tokens;
+	t_token	*new_token;
+	int		i;
+
+	i = 0;
+	tokens = NULL;
+	while (input[i])
+	{
+		i = ft_skip_space(input, i);
+		if (!input[i])
+			break ;
+		if (input[i] == '|')
+			new_token = ft_handle_pipe(&i);
+		else if (input[i] == '<' || input[i] == '>')
+			new_token = ft_handle_redirection(input, &i);
+		else
+			new_token = ft_handle_word(input, &i);
+		ft_add_token(&tokens, new_token);
+	}
+	return (tokens);
+}
