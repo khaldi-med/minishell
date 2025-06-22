@@ -1,15 +1,5 @@
 #include "../../include/minishell.h"
 
-void	ft_free_path_dirs(char **path_dirs)
-{
-	int	i;
-
-	i = 0;
-	while (path_dirs[i])
-		free(path_dirs[i++]);
-	free(path_dirs);
-}
-
 void	ft_free_tokens(t_token *tokens)
 {
 	t_token	*tmp;

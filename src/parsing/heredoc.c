@@ -39,7 +39,9 @@ int	ft_setup_heredoc(char *delimiter)
 	return (0);
 }
 
-// NEW FUNCTION - Process all heredocs before pipeline execution
+/*
+** Process all heredocs before pipeline execution
+*/
 int	ft_preprocess_heredocs(t_cmd *cmds)
 {
 	t_cmd	*current;
@@ -53,8 +55,6 @@ int	ft_preprocess_heredocs(t_cmd *cmds)
 		{
 			if (redir->type == TOKEN_HEREDOC)
 			{
-				// Process this heredoc but don't set up redirection yet
-				// Just collect the input
 				if (ft_process_heredoc_input(redir->file) == -1)
 					return (-1);
 			}
@@ -65,12 +65,13 @@ int	ft_preprocess_heredocs(t_cmd *cmds)
 	return (0);
 }
 
-// NEW FUNCTION - Process heredoc input and store it
+/*
+** Process heredoc input and store it
+*/
 int	ft_process_heredoc_input(char *delimiter)
 {
 	char	*line;
 
-	// Read heredoc lines until delimiter, but don't set up pipes yet
 	while (1)
 	{
 		line = readline("> ");
@@ -80,8 +81,6 @@ int	ft_process_heredoc_input(char *delimiter)
 				free(line);
 			break;
 		}
-		// For now, just consume the input
-		// In a full implementation, you'd store this content
 		free(line);
 	}
 	return (0);

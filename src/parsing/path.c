@@ -7,9 +7,7 @@ int	ft_is_executable(char *path)
 	if (stat(path, &file_stat) == 0)
 	{
 		if (S_ISREG(file_stat.st_mode) && (file_stat.st_mode & S_IXUSR))
-		{
 			return (1);
-		}
 	}
 	return (0);
 }
@@ -24,57 +22,6 @@ static char	*ft_check_dir_path(char *cmd)
 	return (NULL);
 }
 
-static int	ft_count_path_dirs(char *path_env)
-{
-	int	count;
-	int	i;
-
-	count = 1;
-	i = 0;
-	while (path_env[i])
-	{
-		if (path_env[i] == ':')
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-static char	**ft_split_path_dirs(char *path_env)
-{
-	char	**dirs;
-	char	*token;
-	int		count;
-	int		i;
-
-	i = 0;
-	count = ft_count_path_dirs(path_env);
-	dirs = malloc(sizeof(char *) * (count + 1));
-	if (!dirs)
-		return (NULL);
-	token = strtok(path_env, ":");
-	while (token)
-	{
-		dirs[i] = ft_strdup(token);
-		token = strtok(NULL, ":");
-		i++;
-	}
-	dirs[i] = NULL;
-	return (dirs);
-}
-
-char	**ft_get_path_dirs(char **env)
-{
-	char	*path_env;
-	char	**dirs;
-
-	path_env = ft_get_env_value(env, "PATH");
-	if (!path_env)
-		return (NULL);
-	dirs = ft_split_path_dirs(path_env);
-	free(path_env);
-	return (dirs);
-}
 
 static char	*ft_search_in_path_dirs(char *cmd, char **path_dirs)
 {

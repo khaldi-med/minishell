@@ -48,14 +48,9 @@ static char	*ft_extract_var_name(char *str, int *i)
 		(*i)++;
 		return (ft_strdup("?"));
 	}
-	if (!((str[*i] >= 'a' && str[*i] <= 'z') ||
-			(str[*i] >= 'A' && str[*i] <= 'Z') || str[*i] == '_'))
-	{
+	if (!(ft_isalpha(str[*i]) || str[*i] == '_'))
 		return (NULL);
-	}
-	while (str[*i] && (str[*i] == '_' || (str[*i] >= 'a' && str[*i] <= 'z')
-			|| (str[*i] >= 'A' && str[*i] <= 'Z') || (str[*i] >= '0'
-				&& str[*i] <= '9')))
+	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '_'))
 		(*i)++;
 	len = *i - start;
 	var_name = malloc(len + 1);
