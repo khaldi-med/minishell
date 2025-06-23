@@ -1,5 +1,4 @@
 #include "libft.h"
-#include <limits.h>
 
 static int	calc_num_len(int num, int *is_negative)
 {

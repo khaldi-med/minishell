@@ -6,7 +6,7 @@
 /*   By: mohkhald <mohkhald@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 23:44:52 by mohkhald          #+#    #+#             */
-/*   Updated: 2025/06/22 15:24:20 by mohkhald         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:36:56 by mohkhald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define LIBFT_H
 
 // Builte in library
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-
 // My libft functions
 
 typedef struct s_list
