@@ -1,5 +1,64 @@
 #include "../../include/minishell.h"
 
+/**
+ * Check if quotes are properly closed in the input string
+ * Returns the type of unclosed quote (0 if all closed, '"' or '\'' if unclosed)
+ */
+char	ft_check_unclosed_quotes(char *str)
+{
+	int		i;
+	char	quote_char;
+
+	if (!str)
+		return (0);
+	i = 0;
+	quote_char = 0;
+	while (str[i])
+	{
+		if (!quote_char && (str[i] == '\'' || str[i] == '"'))
+		{
+			quote_char = str[i];
+		}
+		else if (quote_char && str[i] == quote_char)
+		{
+			quote_char = 0;
+		}
+		i++;
+	}
+	return (quote_char);
+}
+
+/**
+ * Handle multiline input for unclosed quotes using readline
+ * Returns complete input with closed quotes or NULL on error
+ */
+char	*ft_handle_quote_continuation(char *initial_input)
+{
+	char	*line;
+	char	*temp;
+	char	*result;
+	char	unclosed_quote;
+
+	result = ft_strdup(initial_input);
+	if (!result)
+		return (NULL);
+	while ((unclosed_quote = ft_check_unclosed_quotes(result)) != 0)
+	{
+		line = readline("> ");
+		if (!line)
+		{
+			free(result);
+			return (NULL);
+		}
+		temp = result;
+		result = ft_strjoin_with_newline(result, line);
+		free(temp);
+		free(line);
+		if (!result)
+			return (NULL);
+	}
+	return (result);
+}
 
 char	*ft_handle_quotes(char *str)
 {

@@ -29,16 +29,14 @@ int	ft_builtin_exit(t_shell *shell, char **args)
 	{
 		if (!ft_is_valid_numb(args[1]))
 		{
-			ft_putstr_fd("exit: ", 2);
-			ft_putstr_fd(args[1], 2);
-			ft_putstr_fd(": numeric argument required\n", 2);
+			ft_print_command_error("exit", MSG_NUMERIC_REQUIRED);
 			ft_cleanup_shell(shell);
 			rl_clear_history();
 			exit(2);
 		}
 		if (args[2])
 		{
-			ft_putstr_fd("exit: too many arguments\n", 2);
+			ft_print_command_error("exit", MSG_TOO_MANY_ARGS);
 			return (1);
 		}
 		exit_code = ft_atoi(args[1]);

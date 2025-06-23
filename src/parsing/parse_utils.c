@@ -44,3 +44,37 @@ void	ft_process_redir_token(t_cmd *cmd, t_token **token, t_shell *shell)
 		free(processed_value);
 	}
 }
+
+/**
+ * Join two strings with a newline character between them
+ * Used for multiline quote continuation
+ */
+char	*ft_strjoin_with_newline(char *s1, char *s2)
+{
+	char	*result;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	result = malloc(len1 + len2 + 2); // +2 for newline and null terminator
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (i < len1)
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	result[i++] = '\n';
+	while (i - len1 - 1 < len2)
+	{
+		result[i] = s2[i - len1 - 1];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}

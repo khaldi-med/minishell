@@ -34,7 +34,7 @@ int	ft_builtin_cd(char **args)
 
 	if (args[1] && args[2])
 	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
+		ft_print_command_error("cd", MSG_TOO_MANY_ARGS);
 		return (1);
 	}
 	if (!args[1])
@@ -42,7 +42,7 @@ int	ft_builtin_cd(char **args)
 		home = getenv("HOME");
 		if (!home)
 		{
-			ft_putstr_fd("cd: HOME not set\n", 1);
+			ft_print_command_error("cd", "HOME not set");
 			return (1);
 		}
 		path = home;
@@ -51,9 +51,12 @@ int	ft_builtin_cd(char **args)
 		path = args[1];
 	if (chdir(path) == -1)
 	{
-		ft_putstr_fd("cd: ", 2);
-		ft_putstr_fd(path, 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
+		if (errno == ENOENT)
+			ft_print_command_error("cd", MSG_NO_SUCH_FILE);
+		else if (errno == ENOTDIR)
+			ft_print_command_error("cd", MSG_NOT_A_DIRECTORY);
+		else
+			ft_print_file_error(path);
 		return (1);
 	}
 	return (0);
@@ -65,7 +68,7 @@ int	ft_builtin_pwd(void)
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
-		perror("pwd");
+		ft_print_file_error("pwd");
 		return (1);
 	}
 	ft_putendl_fd(cwd, 1);

@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 
-static int	ft_is_valid_identifier(char *str)
+int	ft_is_valid_identifier(char *str)
 {
 	int	i;
 
@@ -26,9 +26,7 @@ static int	ft_handle_export_arg(t_shell *shell, char *arg)
 
 	if (!ft_is_valid_identifier(arg))
 	{
-		ft_putstr_fd("export: `", 2);
-		ft_putstr_fd(arg, 2);
-		ft_putstr_fd("': not a valid identifier\n", 2);
+		ft_handle_export_error(arg);
 		return (1);
 	}
 	equal_pos = ft_strchr(arg, '=');

@@ -20,6 +20,33 @@
 # define MAX_PATH 1024
 # define MAX_ARGS 100
 
+/* Custom error codes */
+# define MS_SUCCESS 0
+# define MS_GENERAL_ERROR 1
+# define MS_SYNTAX_ERROR 2
+# define MS_CMD_NOT_FOUND 127
+
+/* Error types */
+# define ERR_FILE_NOT_FOUND 1
+# define ERR_PERMISSION_DENIED 2
+# define ERR_NOT_A_DIRECTORY 3
+# define ERR_TOO_MANY_ARGS 4
+# define ERR_INVALID_IDENTIFIER 5
+# define ERR_NUMERIC_REQUIRED 6
+# define ERR_UNCLOSED_QUOTE 7
+# define ERR_SYNTAX_TOKEN 8
+
+/* Error message macros */
+# define MSG_CMD_NOT_FOUND "command not found"
+# define MSG_NO_SUCH_FILE "No such file or directory"
+# define MSG_PERMISSION_DENIED "Permission denied"
+# define MSG_NOT_A_DIRECTORY "Not a directory"
+# define MSG_TOO_MANY_ARGS "too many arguments"
+# define MSG_INVALID_IDENTIFIER "not a valid identifier"
+# define MSG_NUMERIC_REQUIRED "numeric argument required"
+# define MSG_SYNTAX_ERROR "syntax error near unexpected token"
+# define MSG_UNCLOSED_QUOTE "unexpected EOF while looking for matching"
+
 /* Global variables */
 extern int			g_signal;
 
@@ -95,6 +122,8 @@ char				*ft_get_variable_value(char *var, t_shell *shell);
 char				*ft_handle_quotes(char *str);
 char				*ft_remove_quotes(char *str);
 int					ft_is_quoted(char *str, int pos);
+char				ft_check_unclosed_quotes(char *str);
+char				*ft_handle_quote_continuation(char *initial_input);
 
 /* Path resolution */
 char				*ft_find_executable(char *cmd, char **env);
@@ -131,6 +160,7 @@ void				ft_process_word_token(t_cmd *cmd, t_token *token, int *index,
 						t_shell *shell);
 int					ft_count_args(t_token *tokens);
 void				ft_process_redir_token(t_cmd *cmd, t_token **token, t_shell *shell);
+char				*ft_strjoin_with_newline(char *s1, char *s2);
 
 /* Command creation functions */
 t_cmd				*ft_creat_cmd(void);
@@ -143,4 +173,17 @@ void				ft_shell_loop(t_shell *shell);
 
 // free functions
 void				ft_free_path_dirs(char **path_dirs);
+
+/* Error handling functions */
+void				ft_print_error(char *prefix, char *message);
+void				ft_print_command_error(char *command, char *message);
+void				ft_print_file_error(char *filename);
+void				ft_print_syntax_error(char *token);
+int					ft_handle_cd_error(char *path);
+int					ft_handle_export_error(char *identifier);
+int					ft_handle_exit_error(char **args);
+int					ft_handle_redirection_error(char *filename, int error_type);
+int					ft_is_valid_identifier(char *str);
+void				ft_print_pipe_error(void);
+
 #endif

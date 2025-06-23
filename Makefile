@@ -33,7 +33,10 @@ SOURCES = $(SRCDIR)/exec/executor.c \
           $(SRCDIR)/parsing/env_basic.c \
           $(SRCDIR)/parsing/env_unset.c \
           $(SRCDIR)/parsing/lexer.c \
-          $(SRCDIR)/parsing/token_utils.c
+          $(SRCDIR)/parsing/token_utils.c \
+          $(SRCDIR)/utils/error_handling.c \
+          $(SRCDIR)/utils/error_utils.c \
+          $(SRCDIR)/utils/error_exit.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

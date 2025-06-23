@@ -7,7 +7,7 @@ static int	ft_handle_inp_red(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror(file);
+		ft_print_file_error(file);
 		return (-1);
 	}
 	dup2(fd, 0);
@@ -22,7 +22,7 @@ static int	ft_handle_outp_red(char *file, int flags)
 	fd = open(file, flags, 0644);
 	if (fd < 0)
 	{
-		perror(file);
+		ft_print_file_error(file);
 		return (-1);
 	}
 	dup2(fd, 1);
