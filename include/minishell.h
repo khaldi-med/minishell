@@ -126,6 +126,16 @@ t_cmd				*ft_parse_tokens(t_token *tokens, t_shell *shell);
 void				ft_free_tokens(t_token *tokens);
 void				ft_free_cmds(t_cmd *cmds);
 
+/* Parse utility functions */
+void				ft_process_word_token(t_cmd *cmd, t_token *token, int *index,
+						t_shell *shell);
+int					ft_count_args(t_token *tokens);
+void				ft_process_redir_token(t_cmd *cmd, t_token **token, t_shell *shell);
+
+/* Command creation functions */
+t_cmd				*ft_creat_cmd(void);
+void				ft_add_redir(t_cmd *cmd, t_token_type type, char *file);
+
 /* Shell management functions */
 void				ft_init_shell(t_shell *shell, char **envp);
 void				ft_cleanup_shell(t_shell *shell);
