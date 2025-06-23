@@ -95,7 +95,7 @@ void				ft_exec_sing_cmd(t_shell *shell, t_cmd *cmd);
 void				ft_exec_pipe(t_shell *shell, t_cmd *cmds);
 void				ft_exec_external_cmd(t_cmd *cmd, char **env);
 int					ft_setup_redirections(t_redir *redirs);
-
+int					ft_is_valid_number(char *str);
 /* Built-in commands */
 int					ft_is_builtin(char *cmd);
 int					ft_exec_builtin(t_shell *shell, char **args);

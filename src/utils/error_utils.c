@@ -6,12 +6,11 @@
 /*   By: mohammed <mohammed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:04:00 by mohammed          #+#    #+#             */
-/*   Updated: 2025/06/23 17:04:00 by mohammed         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:04:24 by mohkhald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
 
 /**
  * Print pipe syntax error
@@ -48,3 +47,17 @@ int	ft_handle_redirection_error(char *filename, int error_type)
 	return (-1);
 }
 
+int	ft_handle_exit_error(char **args)
+{
+	if (args[1] && !ft_is_valid_number(args[1]))
+	{
+		ft_print_command_error("exit", MSG_NUMERIC_REQUIRED);
+		return (2);
+	}
+	if (args[1] && args[2])
+	{
+		ft_print_command_error("exit", MSG_TOO_MANY_ARGS);
+		return (1);
+	}
+	return (0);
+}

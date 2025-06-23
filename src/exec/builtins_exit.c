@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 
-static int	ft_is_valid_numb(char *str)
+int	ft_is_valid_number(char *str)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	ft_builtin_exit(t_shell *shell, char **args)
 	ft_putstr_fd("exit\n", 2);
 	if (args[1])
 	{
-		if (!ft_is_valid_numb(args[1]))
+		if (!ft_is_valid_number(args[1]))
 		{
 			ft_print_command_error("exit", MSG_NUMERIC_REQUIRED);
 			ft_cleanup_shell(shell);

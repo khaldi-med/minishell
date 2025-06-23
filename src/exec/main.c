@@ -1,9 +1,6 @@
 #include "../../include/minishell.h"
-#include <readline/readline.h>
 
-/* Global variable definition */
-int g_signal = 0;
-
+int		g_signal;
 void	ft_init_shell(t_shell *shell, char **envp)
 {
 	shell->env = ft_copy_env(envp);
