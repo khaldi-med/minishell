@@ -22,7 +22,6 @@ static char	*ft_check_dir_path(char *cmd)
 	return (NULL);
 }
 
-
 static char	*ft_search_in_path_dirs(char *cmd, char **path_dirs)
 {
 	char	*full_path;

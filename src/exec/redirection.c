@@ -44,16 +44,17 @@ int	ft_setup_redirections(t_redir *redirs)
 		}
 		else if (current->type == TOKEN_REDIR_OUT)
 		{
-			if (ft_handle_outp_red(current->file, O_WRONLY | O_CREAT | O_TRUNC) == -1)
+			if (ft_handle_outp_red(current->file,
+					O_WRONLY | O_CREAT | O_TRUNC) == -1)
 				return (-1);
 		}
 		else if (current->type == TOKEN_REDIR_APPEND)
 		{
-			if (ft_handle_outp_red(current->file, O_WRONLY | O_CREAT | O_APPEND) == -1)
+			if (ft_handle_outp_red(current->file,
+					O_WRONLY | O_CREAT | O_APPEND) == -1)
 				return (-1);
 		}
 		current = current->next;
 	}
 	return (0);
 }
-

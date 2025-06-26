@@ -1,6 +1,5 @@
 #include "../../include/minishell.h"
 
-
 int	ft_setup_heredoc(char *delimiter)
 {
 	int		pipefd[2];
@@ -79,7 +78,7 @@ int	ft_process_heredoc_input(char *delimiter)
 		{
 			if (line)
 				free(line);
-			break;
+			break ;
 		}
 		free(line);
 	}

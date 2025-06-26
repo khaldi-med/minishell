@@ -34,7 +34,7 @@ static void	ft_rebuild_env_arry(t_shell *shell, char *key, int count)
 	while (shell->env[i])
 	{
 		if (!(ft_strncmp(shell->env[i], key, key_len) == 0 &&
-			shell->env[i][key_len] == '='))
+				shell->env[i][key_len] == '='))
 			new_env[j++] = shell->env[i];
 		else
 			free(shell->env[i]);

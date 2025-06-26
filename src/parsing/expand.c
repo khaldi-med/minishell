@@ -100,9 +100,9 @@ char	*ft_expand_variables(char *str, t_shell *shell)
 		}
 		else
 		{
-		result_len = ft_strlen(result);
-		tmp = malloc(result_len + 2);
-		ft_strlcpy(tmp, result, result_len + 1);
+			result_len = ft_strlen(result);
+			tmp = malloc(result_len + 2);
+			ft_strlcpy(tmp, result, result_len + 1);
 			tmp[result_len] = str[i];
 			tmp[result_len + 1] = '\0';
 			free(result);

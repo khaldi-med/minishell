@@ -16,6 +16,9 @@ void	ft_shell_loop(t_shell *shell)
 	while (1)
 	{
 		ft_setup_signals();
+		/* Reset syntax error status for new command */
+		if (shell->exit_status == MS_SYNTAX_ERROR)
+			shell->exit_status = 0;
 		input = readline("minishell$ ");
 		if (!input)
 		{
@@ -33,7 +36,8 @@ void	ft_shell_loop(t_shell *shell)
 		if (tokens)
 		{
 			shell->cmds = ft_parse_tokens(tokens, shell);
-			if (shell->exit_status != MS_SYNTAX_ERROR && shell->cmds && shell->cmds->args && shell->cmds->args[0])
+			if (shell->exit_status != MS_SYNTAX_ERROR && shell->cmds
+				&& shell->cmds->args && shell->cmds->args[0])
 				ft_exec_cmds(shell, shell->cmds);
 			ft_free_tokens(tokens);
 			ft_free_cmds(shell->cmds);

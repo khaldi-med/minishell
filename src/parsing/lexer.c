@@ -22,9 +22,9 @@ static char	*ft_extract_word(char *input, int *i)
 		else if (quote && input[*i] == quote)
 			quote = 0;
 		else if (!quote &&
-				(input[*i] == ' ' || input[*i] == '\t' || input[*i] == '<'
-					||
-				input[*i] == '>' || input[*i] == '|'))
+					(input[*i] == ' ' || input[*i] == '\t' || input[*i] == '<'
+							||
+					input[*i] == '>' || input[*i] == '|'))
 			break ;
 		(*i)++;
 	}

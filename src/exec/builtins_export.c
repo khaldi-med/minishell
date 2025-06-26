@@ -15,7 +15,7 @@ int	ft_is_valid_identifier(char *str)
 			return (0);
 		i++;
 	}
-	return (1);
+	return (1); 
 }
 
 static int	ft_handle_export_arg(t_shell *shell, char *arg)
