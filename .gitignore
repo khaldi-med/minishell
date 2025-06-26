@@ -3,7 +3,7 @@
 *.a
 *.out
 *.s
-./minishell
+minishell
 minishell_tester/
 .marscode/
 
