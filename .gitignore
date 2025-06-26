@@ -4,5 +4,6 @@
 *.out
 *.s
 ./minishell
-minishell_tester
-.marscode
+./minishell_tester
+./.marscode
+
