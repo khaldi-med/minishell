@@ -4,3 +4,4 @@
 *.out
 *.s
 ./minishell
+minishell_tester
