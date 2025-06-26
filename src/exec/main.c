@@ -33,7 +33,7 @@ void	ft_shell_loop(t_shell *shell)
 		if (tokens)
 		{
 			shell->cmds = ft_parse_tokens(tokens, shell);
-			if (shell->cmds && shell->cmds->args && shell->cmds->args[0])
+			if (shell->exit_status != MS_SYNTAX_ERROR && shell->cmds && shell->cmds->args && shell->cmds->args[0])
 				ft_exec_cmds(shell, shell->cmds);
 			ft_free_tokens(tokens);
 			ft_free_cmds(shell->cmds);
