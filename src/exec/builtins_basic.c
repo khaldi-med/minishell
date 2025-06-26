@@ -34,7 +34,7 @@ int	ft_builtin_cd(char **args)
 
 	if (args[1] && args[2])
 	{
-		ft_print_command_error("cd", MSG_TOO_MANY_ARGS);
+		ft_print_command_error("cd", TOO_MANY_ARGS);
 		return (1);
 	}
 	if (!args[1])
@@ -52,9 +52,9 @@ int	ft_builtin_cd(char **args)
 	if (chdir(path) == -1)
 	{
 		if (errno == ENOENT)
-			ft_print_command_error("cd", MSG_NO_SUCH_FILE);
+			ft_print_command_error("cd", NO_SUCH_FILE);
 		else if (errno == ENOTDIR)
-			ft_print_command_error("cd", MSG_NOT_A_DIRECTORY);
+			ft_print_command_error("cd", NOT_A_DIRECTORY);
 		else
 			ft_print_file_error(path);
 		return (1);

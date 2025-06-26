@@ -29,14 +29,14 @@ int	ft_builtin_exit(t_shell *shell, char **args)
 	{
 		if (!ft_is_valid_number(args[1]))
 		{
-			ft_print_command_error("exit", MSG_NUMERIC_REQUIRED);
+			ft_print_command_error("exit", NUMERIC_REQUIRED);
 			ft_cleanup_shell(shell);
 			rl_clear_history();
 			exit(2);
 		}
 		if (args[2])
 		{
-			ft_print_command_error("exit", MSG_TOO_MANY_ARGS);
+			ft_print_command_error("exit", TOO_MANY_ARGS);
 			return (1);
 		}
 		exit_code = ft_atoi(args[1]);

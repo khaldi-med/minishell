@@ -69,7 +69,7 @@ void	ft_print_file_error(char *filename)
 void	ft_print_syntax_error(char *token)
 {
 	write(STDERR_FILENO, "minishell: ", 11);
-	write(STDERR_FILENO, MSG_SYNTAX_ERROR, ft_strlen(MSG_SYNTAX_ERROR));
+	write(STDERR_FILENO, SYNTAX_ERROR, ft_strlen(SYNTAX_ERROR));
 	write(STDERR_FILENO, " `", 2);
 	if (token)
 		write(STDERR_FILENO, token, ft_strlen(token));
@@ -88,7 +88,7 @@ int	ft_handle_export_error(char *identifier)
 	if (identifier)
 		write(STDERR_FILENO, identifier, ft_strlen(identifier));
 	write(STDERR_FILENO, "': ", 3);
-	write(STDERR_FILENO, MSG_INVALID_IDENTIFIER, ft_strlen(MSG_INVALID_IDENTIFIER));
+	write(STDERR_FILENO, INVALID_IDENTIFIER, ft_strlen(INVALID_IDENTIFIER));
 	write(STDERR_FILENO, "\n", 1);
 	return (1);
 }

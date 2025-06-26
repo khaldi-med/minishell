@@ -13,7 +13,7 @@ static int	ft_check_file_access(char *path, t_cmd *cmd)
 		}
 		if (access(path, X_OK) == -1)
 		{
-			ft_print_command_error(cmd->args[0], MSG_PERMISSION_DENIED);
+			ft_print_command_error(cmd->args[0], PERMISSION_DENIED);
 			exit(126);
 		}
 		return (1);
@@ -29,7 +29,7 @@ static char	*ft_get_executable_path(t_cmd *cmd, char **env)
 	{
 		if (!ft_check_file_access(cmd->args[0], cmd))
 		{
-			ft_print_command_error(cmd->args[0], MSG_NO_SUCH_FILE);
+			ft_print_command_error(cmd->args[0], NO_SUCH_FILE);
 			exit(127);
 		}
 		path = cmd->args[0];
@@ -39,7 +39,7 @@ static char	*ft_get_executable_path(t_cmd *cmd, char **env)
 		path = ft_find_executable(cmd->args[0], env);
 		if (!path)
 		{
-			ft_print_command_error(cmd->args[0], MSG_CMD_NOT_FOUND);
+			ft_print_command_error(cmd->args[0], CMD_NOT_FOUND);
 			exit(127);
 		}
 	}
