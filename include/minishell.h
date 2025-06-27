@@ -121,8 +121,6 @@ char				*ft_get_variable_value(char *var, t_shell *shell);
 
 /* Quote handling */
 char				*ft_handle_quotes(char *str);
-// char *ft_remove_quotes(char *str);
-// int ft_is_quoted(char *str, int pos);
 char				ft_check_unclosed_quotes(char *str);
 char				*ft_handle_quote_continuation(char *initial_input);
 

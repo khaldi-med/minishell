@@ -16,7 +16,6 @@ void	ft_shell_loop(t_shell *shell)
 	while (1)
 	{
 		ft_setup_signals();
-		/* Reset syntax error status for new command */
 		if (shell->exit_status == MS_SYNTAX_ERROR)
 			shell->exit_status = 0;
 		input = readline("minishell$ ");

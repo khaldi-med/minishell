@@ -23,7 +23,6 @@ static void	ft_pars_args(t_cmd *cmd, t_token **tokens, t_shell *shell)
 				&& current->type <= TOKEN_HEREDOC)
 		{
 			ft_process_redir_token(cmd, &current, shell);
-			/* current is already advanced by ft_process_redir_token */
 		}
 		else
 			current = current->next;
