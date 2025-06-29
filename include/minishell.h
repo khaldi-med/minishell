@@ -47,9 +47,6 @@
 # define SYNTAX_ERROR "syntax error near unexpected token"
 # define UNCLOSED_QUOTE "unexpected EOF while looking for matching"
 
-/* Global variables */
-extern int			g_signal;
-
 typedef enum e_token_type
 {
 	TOKEN_WORD,
@@ -58,7 +55,6 @@ typedef enum e_token_type
 	TOKEN_REDIR_OUT,
 	TOKEN_REDIR_APPEND,
 	TOKEN_HEREDOC,
-	TOKEN_EOF
 }					t_token_type;
 
 typedef struct s_token
@@ -130,8 +126,6 @@ char				**ft_get_path_dirs(char **env);
 int					ft_is_executable(char *path);
 
 /* Heredoc functions */
-// void ft_handle_heredoc(char *delimiter);
-int					ft_setup_heredoc(char *delimiter);
 int					ft_preprocess_heredocs(t_cmd *cmds);
 int					ft_process_heredoc_input(char *delimiter);
 
@@ -176,11 +170,8 @@ void				ft_print_error(char *prefix, char *message);
 void				ft_print_command_error(char *command, char *message);
 void				ft_print_file_error(char *filename);
 void				ft_print_syntax_error(char *token);
-int					ft_handle_cd_error(char *path);
 int					ft_handle_export_error(char *identifier);
-int					ft_handle_exit_error(char **args);
 int					ft_handle_redirection_error(char *filename, int error_type);
 int					ft_is_valid_identifier(char *str);
-void				ft_print_pipe_error(void);
 
 #endif

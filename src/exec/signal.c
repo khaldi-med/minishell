@@ -1,11 +1,12 @@
 #include "../../include/minishell.h"
 
+/* Signal handler for SIGINT (Ctrl+C) */
 void	ft_signal_handler(int sig)
 {
-	g_signal = sig;
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
+		g_signal = SIGINT;
+		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -23,13 +24,7 @@ void	ft_setup_signals(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	ft_handle_sigint(void)
+void	ft_reset_signal(void)
 {
-	if (g_signal == SIGINT)
-		g_signal = 0;
-}
-
-void	ft_handle_sigquit(void)
-{
-	signal(SIGQUIT, SIG_IGN);
+	g_signal = 0;
 }
