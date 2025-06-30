@@ -32,12 +32,36 @@ t_cmd *ft_parse_tokens(t_token *tokens, t_shell *shell) {
 
   if (!tokens)
     return (NULL);
+  
+  /* Check for syntax error: pipe at the beginning */
+  if (tokens->type == TOKEN_PIPE) {
+    ft_print_syntax_error("|");
+    shell->exit_status = MS_SYNTAX_ERROR;
+    return (NULL);
+  }
+  
   cmds = ft_creat_cmd();
   current_cmd = cmds;
   while (tokens) {
     ft_pars_args(current_cmd, &tokens, shell);
     if (tokens && tokens->type == TOKEN_PIPE) {
       tokens = tokens->next;
+      
+      /* Check for syntax error: pipe at the end */
+      if (!tokens) {
+        ft_print_syntax_error("newline");
+        shell->exit_status = MS_SYNTAX_ERROR;
+        ft_free_cmds(cmds);
+        return (NULL);
+      }
+      /* Check for syntax error: consecutive pipes */
+      if (tokens->type == TOKEN_PIPE) {
+        ft_print_syntax_error("|");
+        shell->exit_status = MS_SYNTAX_ERROR;
+        ft_free_cmds(cmds);
+        return (NULL);
+      }
+      
       new_cmd = ft_creat_cmd();
       current_cmd->next = new_cmd;
       current_cmd = new_cmd;

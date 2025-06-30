@@ -1,6 +1,5 @@
 #include "../../include/minishell.h"
 
-int		g_signal;
 void	ft_init_shell(t_shell *shell, char **envp)
 {
 	shell->env = ft_copy_env(envp);
@@ -35,9 +34,11 @@ void	ft_shell_loop(t_shell *shell)
 		if (tokens)
 		{
 			shell->cmds = ft_parse_tokens(tokens, shell);
-			if (shell->exit_status != MS_SYNTAX_ERROR && shell->cmds
-				&& shell->cmds->args && shell->cmds->args[0])
-				ft_exec_cmds(shell, shell->cmds);
+			if (shell->exit_status != MS_SYNTAX_ERROR && shell->cmds)
+			{
+				if (ft_preprocess_heredocs(shell->cmds) == 0)
+					ft_exec_cmds(shell, shell->cmds);
+			}
 			ft_free_tokens(tokens);
 			ft_free_cmds(shell->cmds);
 			shell->cmds = NULL;

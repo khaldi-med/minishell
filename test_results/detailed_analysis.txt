@@ -1,0 +1,627 @@
+=== MINISHELL vs BASH COMPARISON ANALYSIS ===
+Generated: 30 يونيو, 2025 +01 14:42:46
+
+Analyzing test results...
+ISSUE Line 1: :
+ISSUE Line 2: !
+ISSUE Line 3: >
+ISSUE Line 4: <
+ISSUE Line 5: >>
+ISSUE Line 6: <<
+ISSUE Line 7: <>
+ISSUE Line 8: >>>>>
+ISSUE Line 9: >>>>>>>>>>>>>>>
+ISSUE Line 10: <<<<<
+ISSUE Line 11: <<<<<<<<<<<<<<<<
+ISSUE Line 12: > > > >
+ISSUE Line 13: >> >> >> >>
+ISSUE Line 14: >>>> >> >> >>
+ISSUE Line 15: /
+ISSUE Line 16: //
+ISSUE Line 17: /.
+ISSUE Line 18: /./../../../../..
+ISSUE Line 19: ///////
+ISSUE Line 20: -
+ISSUE Line 22:  hola
+ISSUE Line 23:  | |
+ISSUE Line 24: |
+ISSUE Line 25: ||||
+ISSUE Line 26: ||||||||||||
+ISSUE Line 27: >>|><
+ISSUE Line 28: &&
+ISSUE Line 29: &&&&&
+ISSUE Line 30: &&&&&&&&&&&&&&
+ISSUE Line 31: ;;
+ISSUE Line 32: ;;;;;
+ISSUE Line 33: ;;;;;;;;;;;;;;;
+ISSUE Line 34: ()
+ISSUE Line 35: ( ( ) )
+ISSUE Line 36: ( ( ( ( ) ) ) )
+ISSUE Line 37: ""
+ISSUE Line 38: "hola"
+ISSUE Line 39: hola'
+ISSUE Line 40: '
+ISSUE Line 41: *
+ISSUE Line 42: */*
+ISSUE Line 43: */*
+ISSUE Line 44: .
+ISSUE Line 45: ..
+ISSUE Line 46: ~
+ISSUE Line 47: ABC=hola
+ISSUE Line 48: 4ABC=hola
+ISSUE Line 49: hola
+ISSUE Line 50: hola que tal
+ISSUE Line 51: Makefile
+ISSUE Line 52: echo
+ISSUE Line 53: echo -n
+ISSUE Line 54: echo Hola
+ISSUE Line 55: echoHola
+ISSUE Line 56: echo-nHola
+ISSUE Line 57: echo -n Hola
+ISSUE Line 58: echo "-n" Hola
+ISSUE Line 59: echo -nHola
+ISSUE Line 60: echo Hola -n
+ISSUE Line 61: echo Hola Que Tal
+ISSUE Line 62: echo         Hola
+ISSUE Line 63: echo    Hola     Que    Tal
+ISSUE Line 64: echo      \n hola
+ISSUE Line 65: echo "         " | cat -e
+ISSUE Line 66: echo           | cat -e
+ISSUE Line 67: ""''echo hola""'''' que""'' tal""''
+ISSUE Line 68: echo -n -n
+ISSUE Line 69: echo -n -n Hola Que
+ISSUE Line 70: echo -p
+ISSUE Line 71: echo -nnnnn
+ISSUE Line 72: echo -n -nnn -nnnn
+ISSUE Line 73: echo -n-nnn -nnnn
+ISSUE Line 74: echo -n -nnn hola -nnnn
+ISSUE Line 75: echo -n -nnn-nnnn
+ISSUE Line 76: echo --------n
+ISSUE Line 77: echo -nnn --------n
+ISSUE Line 78: echo -nnn -----nn---nnnn
+ISSUE Line 79: echo -nnn --------nnnn
+ISSUE Line 80: echo $
+ISSUE Line 81: echo $?
+ISSUE Line 82: echo $?$
+ISSUE Line 83: echo $? | echo $? | echo $?
+ISSUE Line 84: echo $:$= | cat -e
+ISSUE Line 85: echo " $ " | cat -e
+ISSUE Line 86: echo ' $ ' | cat -e
+ISSUE Line 87: echo $HOME
+ISSUE Line 88: echo \$HOME
+ISSUE Line 89: echo my shit terminal is [$TERM]
+ISSUE Line 90: echo my shit terminal is [$TERM4
+ISSUE Line 91: echo my shit terminal is [$TERM4]
+ISSUE Line 92: echo $UID
+ISSUE Line 93: echo $HOME9
+ISSUE Line 94: echo $9HOME
+ISSUE Line 95: echo $HOME%
+ISSUE Line 96: echo $UID$HOME
+ISSUE Line 97: echo Le path de mon HOME est $HOME
+ISSUE Line 98: echo $USER$var\$USER$USER\$USERtest$USER
+ISSUE Line 99: echo $hola*
+ISSUE Line 100: echo -nnnn $hola
+ISSUE Line 101: echo > <
+ISSUE Line 102: echo | |
+ISSUE Line 103: EechoE
+ISSUE Line 104: .echo.
+ISSUE Line 105: >echo>
+ISSUE Line 106: <echo<
+ISSUE Line 107: >>echo>>
+ISSUE Line 108: echo|
+ISSUE Line 109: echo -n hola
+ISSUE Line 110: echo *
+ISSUE Line 111: echo '*'
+ISSUE Line 112: echo D*
+ISSUE Line 113: echo *Z
+ISSUE Line 114: echo *t hola
+ISSUE Line 115: echo *t
+ISSUE Line 116: echo $*
+ISSUE Line 117: echo hola*hola *
+ISSUE Line 118: echo $hola*
+ISSUE Line 119: echo $HOME*
+ISSUE Line 120: echo $""
+ISSUE Line 121: echo "$"""
+ISSUE Line 122: echo '$'''
+ISSUE Line 123: echo $"HOME"
+ISSUE Line 124: echo $''HOME
+ISSUE Line 125: echo $""HOME
+ISSUE Line 126: echo "$HO"ME
+ISSUE Line 127: echo '$HO'ME
+ISSUE Line 128: echo "$HO""ME"
+ISSUE Line 129: echo '$HO''ME'
+ISSUE Line 130: echo "'$HO''ME'"
+ISSUE Line 131: echo ""$HOME
+ISSUE Line 132: echo "" $HOME
+ISSUE Line 133: echo ''$HOME
+ISSUE Line 134: echo '' $HOME
+ISSUE Line 135: echo $"HO""ME"
+ISSUE Line 136: echo $'HO''ME'
+ISSUE Line 137: echo $'HOME'
+ISSUE Line 138: echo "$"HOME
+ISSUE Line 139: echo $=HOME
+ISSUE Line 140: echo $"HOLA"
+ISSUE Line 141: echo $'HOLA'
+ISSUE Line 142: echo $DONTEXIST Hola
+ISSUE Line 143: echo "hola"
+ISSUE Line 144: echo 'hola'
+ISSUE Line 145: echo ''hola''
+ISSUE Line 146: echo ''h'o'la''
+ISSUE Line 147: echo "''h'o'la''"
+ISSUE Line 148: echo "'"h'o'la"'"
+ISSUE Line 149: echo"'hola'"
+ISSUE Line 150: echo "'hola'"
+ISSUE Line 151: echo '"hola"'
+ISSUE Line 152: echo '''ho"''''l"a'''
+ISSUE Line 153: echo hola""""""""""""
+ISSUE Line 154: echo hola"''''''''''"
+ISSUE Line 155: echo hola''''''''''''
+ISSUE Line 156: echo hola'""""""""""'
+ISSUE Line 157: e"cho hola"
+ISSUE Line 158: e'cho hola'
+ISSUE Line 159: echo "hola     " | cat -e
+ISSUE Line 160: echo ""hola
+ISSUE Line 161: echo "" hola
+ISSUE Line 162: echo ""             hola
+ISSUE Line 163: echo ""hola
+ISSUE Line 164: echo "" hola
+ISSUE Line 165: echo hola""bonjour
+ISSUE Line 166: "e"'c'ho 'b'"o"nj"o"'u'r
+ISSUE Line 167: ""e"'c'ho 'b'"o"nj"o"'u'r"
+ISSUE Line 168: echo "$DONTEXIST"Makefile
+ISSUE Line 169: echo "$DONTEXIST""Makefile"
+ISSUE Line 170: echo "$DONTEXIST" "Makefile"
+ISSUE Line 171: $?
+ISSUE Line 172: $?$?
+ISSUE Line 173: ?$HOME
+ISSUE Line 174: $
+ISSUE Line 175: $HOME
+ISSUE Line 176: $HOMEdskjhfkdshfsd
+ISSUE Line 177: "$HOMEdskjhfkdshfsd"
+ISSUE Line 178: $HOMEdskjhfkdshfsd'
+ISSUE Line 179: $DONTEXIST
+ISSUE Line 180: $LESS$VAR
+ISSUE Line 193: env
+ISSUE Line 194: env hola
+ISSUE Line 195: env hola que tal
+ISSUE Line 196: env env
+ISSUE Line 197: env env env env env
+ISSUE Line 198: env ls
+ISSUE Line 199: env ./Makefile
+ISSUE Line 200: "export HOLA=bonjour
+ISSUE Line 201: env"
+ISSUE Line 202: "export       HOLA=bonjour
+ISSUE Line 203: env"
+ISSUE Line 204: export
+ISSUE Line 205: "export Hola
+ISSUE Line 206: export"
+ISSUE Line 207: "export Hola9hey
+ISSUE Line 208: export"
+ISSUE Line 209: export $DONTEXIST
+ISSUE Line 210: export | grep "HOME"
+ISSUE Line 211: export ""
+ISSUE Line 212: export =
+ISSUE Line 213: export %
+ISSUE Line 214: export $?
+ISSUE Line 215: export ?=2
+ISSUE Line 216: export 9HOLA=
+ISSUE Line 217: "export HOLA9=bonjour
+ISSUE Line 218: env"
+ISSUE Line 219: "export _HOLA=bonjour
+ISSUE Line 220: env"
+ISSUE Line 221: "export ___HOLA=bonjour
+ISSUE Line 222: env"
+ISSUE Line 223: "export _HO_LA_=bonjour
+ISSUE Line 224: env"
+ISSUE Line 225: export HOL@=bonjour
+ISSUE Line 226: export HOL\~A=bonjour
+ISSUE Line 227: export -HOLA=bonjour
+ISSUE Line 228: export --HOLA=bonjour
+ISSUE Line 229: export HOLA-=bonjour
+ISSUE Line 230: export HO-LA=bonjour
+ISSUE Line 231: export HOL.A=bonjour
+ISSUE Line 232: export HOL\\\$A=bonjour
+ISSUE Line 233: export HO\\\\LA=bonjour
+ISSUE Line 234: export HOL}A=bonjour
+ISSUE Line 235: export HOL{A=bonjour
+ISSUE Line 236: export HO*LA=bonjour
+ISSUE Line 237: export HO#LA=bonjour
+ISSUE Line 238: export HO@LA=bonjour
+ISSUE Line 239: export HO!LA=bonjour
+ISSUE Line 240: "export HO$?LA=bonjour
+ISSUE Line 241: env"
+ISSUE Line 242: export +HOLA=bonjour
+ISSUE Line 243: export HOL+A=bonjour
+ISSUE Line 244: "export HOLA+=bonjour
+ISSUE Line 245: env"
+ISSUE Line 246: "export HOLA=bonjour
+ISSUE Line 247: export HOLA+=bonjour
+ISSUE Line 248: env"
+ISSUE Line 249: "exportHOLA=bonjour
+ISSUE Line 250: env"
+ISSUE Line 251: export HOLA =bonjour
+ISSUE Line 252: export HOLA = bonjour
+ISSUE Line 253: "export HOLA=bon jour
+ISSUE Line 254: env"
+ISSUE Line 255: "export HOLA= bonjour
+ISSUE Line 256: env"
+ISSUE Line 257: "export HOLA=bonsoir
+ISSUE Line 258: export HOLA=bonretour
+ISSUE Line 259: export HOLA=bonjour
+ISSUE Line 260: env"
+ISSUE Line 261: "export HOLA=$HOME
+ISSUE Line 262: env"
+ISSUE Line 263: "export HOLA=bonjour$HOME
+ISSUE Line 264: env"
+ISSUE Line 265: "export HOLA=$HOMEbonjour
+ISSUE Line 266: env"
+ISSUE Line 267: "export HOLA=bon$jour
+ISSUE Line 268: env"
+ISSUE Line 269: "export HOLA=bon\jour
+ISSUE Line 270: env"
+ISSUE Line 271: "export HOLA=bon\\jour
+ISSUE Line 272: env"
+ISSUE Line 273: export HOLA=bon(jour
+ISSUE Line 274: export HOLA=bon()jour
+ISSUE Line 275: export HOLA=bon&jour
+ISSUE Line 276: "export HOLA=bon@jour
+ISSUE Line 277: env"
+ISSUE Line 278: "export HOLA=bon;jour
+ISSUE Line 279: env"
+ISSUE Line 280: export HOLA=bon!jour
+ISSUE Line 281: "export HOLA=bon""jour""
+ISSUE Line 282: env"
+ISSUE Line 283: "export HOLA$USER=bonjour
+ISSUE Line 284: env"
+ISSUE Line 285: "export HOLA=bonjour=casse-toi
+ISSUE Line 286: echo $HOLA"
+ISSUE Line 287: "export ""HOLA=bonjour""=casse-toi
+ISSUE Line 288: echo $HOLA"
+ISSUE Line 289: "export HOLA=bonjour
+ISSUE Line 290: export BYE=casse-toi
+ISSUE Line 291: echo $HOLA et $BYE"
+ISSUE Line 292: "export HOLA=bonjour BYE=casse-toi
+ISSUE Line 293: echo $HOLA et $BYE"
+ISSUE Line 294: "export A=a B=b C=c
+ISSUE Line 295: echo $A $B $C"
+ISSUE Line 296: "export $HOLA=bonjour
+ISSUE Line 297: env"
+ISSUE Line 298: "export HOLA=""bonjour      ""  
+ISSUE Line 299: echo $HOLA | cat -e"
+ISSUE Line 300: "export HOLA=""   -n bonjour   ""  
+ISSUE Line 301: echo $HOLA"
+ISSUE Line 302: "export HOLA=""bonjour   ""/
+ISSUE Line 303: echo $HOLA"
+ISSUE Line 304: "export HOLA='""'
+ISSUE Line 305: echo "" $HOLA "" | cat -e"
+ISSUE Line 306: "export HOLA=at
+ISSUE Line 307: c$HOLA Makefile"
+ISSUE Line 308: "export """" HOLA=bonjour
+ISSUE Line 309: env"
+ISSUE Line 310: "export HOLA=""cat Makefile | grep NAME""  
+ISSUE Line 311: echo $HOLA"
+ISSUE Line 312: "export HOLA=hey 
+ISSUE Line 313: echo $HOLA$HOLA$HOLA=hey$HOLA"
+ISSUE Line 314: "export HOLA=""  bonjour  hey  ""  
+ISSUE Line 315: echo $HOLA | cat -e"
+ISSUE Line 316: "export HOLA=""  bonjour  hey  ""  
+ISSUE Line 317: echo """"""$HOLA"""""" | cat -e"
+ISSUE Line 318: "export HOLA=""  bonjour  hey  ""  
+ISSUE Line 319: echo wesh""$HOLA"" | cat -e"
+ISSUE Line 320: "export HOLA=""  bonjour  hey  ""  
+ISSUE Line 321: echo wesh""""$HOLA."
+ISSUE Line 322: "export HOLA=""  bonjour  hey  ""  
+ISSUE Line 323: echo wesh$""""HOLA."
+ISSUE Line 324: "export HOLA=""  bonjour  hey  ""  
+ISSUE Line 325: echo wesh$""HOLA HOLA""."
+ISSUE Line 326: "export HOLA=bonjour
+ISSUE Line 327: export HOLA="" hola et $HOLA""
+ISSUE Line 328: echo $HOLA"
+ISSUE Line 329: "export HOLA=bonjour
+ISSUE Line 330: export HOLA=' hola et $HOLA'
+ISSUE Line 331: echo $HOLA"
+ISSUE Line 332: "export HOLA=bonjour
+ISSUE Line 333: export HOLA="" hola et $HOLA""$HOLA
+ISSUE Line 334: echo $HOLA"
+ISSUE Line 335: "export HOLA=""ls        -l    - a""
+ISSUE Line 336: echo $HOLA"
+ISSUE Line 337: "export HOLA=""s -la"" 
+ISSUE Line 338: l$HOLA"
+ISSUE Line 339: "export HOLA=""s -la"" 
+ISSUE Line 340: l""$HOLA"""
+ISSUE Line 341: "export HOLA=""s -la"" 
+ISSUE Line 342: l'$HOLA'"
+ISSUE Line 343: "export HOLA=""l"" 
+ISSUE Line 344: $HOLAs"
+ISSUE Line 345: "export HOLA=""l"" 
+ISSUE Line 346: ""$HOLA""s"
+ISSUE Line 347: "export HOL=A=bonjour
+ISSUE Line 348: env"
+ISSUE Line 349: "export HOLA=""l"" 
+ISSUE Line 350: '$HOLA's"
+ISSUE Line 351: "export HOL=A=""""
+ISSUE Line 352: env"
+ISSUE Line 353: "export TE+S=T
+ISSUE Line 354: env"
+ISSUE Line 355: export ""=""
+ISSUE Line 356: export ''=''
+ISSUE Line 357: export "="="="
+ISSUE Line 358: export '='='='
+ISSUE Line 359: "export HOLA=p
+ISSUE Line 360: export BYE=w
+ISSUE Line 361: $HOLA""BYE""d"
+ISSUE Line 362: "export HOLA=p
+ISSUE Line 363: export BYE=w
+ISSUE Line 364: ""$HOLA""'$BYE'd"
+ISSUE Line 365: "export HOLA=p
+ISSUE Line 366: export BYE=w
+ISSUE Line 367: ""$HOLA""""$BYE""d"
+ISSUE Line 368: "export HOLA=p
+ISSUE Line 369: export BYE=w
+ISSUE Line 370: $""HOLA""$""BYE""d"
+ISSUE Line 371: "export HOLA=p
+ISSUE Line 372: export BYE=w
+ISSUE Line 373: $'HOLA'$'BYE'd"
+ISSUE Line 374: "export HOLA=-n
+ISSUE Line 375: ""echo $HOLA"" hey"
+ISSUE Line 376: "export A=1 B=2 C=3 D=4 E=5 F=6 G=7 H=8
+ISSUE Line 377: echo ""$A'$B""'$C""$D'$E'""$F'""'$G'$H"""
+ISSUE Line 378: "export HOLA=bonjour
+ISSUE Line 379: env
+ISSUE Line 380: unset HOLA
+ISSUE Line 381: env"
+ISSUE Line 382: "export HOLA=bonjour
+ISSUE Line 383: env
+ISSUE Line 384: unset HOLA
+ISSUE Line 385: unset HOLA
+ISSUE Line 386: env"
+ISSUE Line 387: "unset PATH
+ISSUE Line 388: echo $PATH"
+ISSUE Line 389: "unset PATH
+ISSUE Line 390: ls"
+ISSUE Line 391: unset ""
+ISSUE Line 392: unset INEXISTANT
+ISSUE Line 393: "unset PWD
+ISSUE Line 394: env | grep PWD
+ISSUE Line 395: pwd"
+ISSUE Line 396: "pwd
+ISSUE Line 397: unset PWD
+ISSUE Line 398: env | grep PWD
+ISSUE Line 399: cd $PWD
+ISSUE Line 400: pwd"
+ISSUE Line 401: "unset OLDPWD
+ISSUE Line 402: env | grep OLDPWD"
+ISSUE Line 403: unset 9HOLA
+ISSUE Line 404: unset HOLA9
+ISSUE Line 405: unset HOL?A
+ISSUE Line 406: unset HOLA HOL?A
+ISSUE Line 407: unset HOL?A HOLA
+ISSUE Line 408: unset HOL?A HOL.A
+ISSUE Line 409: unset HOLA=
+ISSUE Line 410: unset HOL\\\\A
+ISSUE Line 411: unset HOL;A
+ISSUE Line 412: unset HOL.A
+ISSUE Line 413: unset HOL+A
+ISSUE Line 414: unset HOL=A
+ISSUE Line 415: unset HOL{A
+ISSUE Line 416: unset HOL}A
+ISSUE Line 417: unset HOL-A
+ISSUE Line 418: unset -HOLA
+ISSUE Line 419: unset _HOLA
+ISSUE Line 420: unset HOL_A
+ISSUE Line 421: unset HOLA_
+ISSUE Line 422: unset HOL*A
+ISSUE Line 423: unset HOL#A
+ISSUE Line 424: unset $HOLA
+ISSUE Line 425: unset $PWD
+ISSUE Line 426: unset HOL@
+ISSUE Line 427: unset HOL!A
+ISSUE Line 428: unset HOL^A
+ISSUE Line 429: unset HOL$?A
+ISSUE Line 430: unset HOL\~A
+ISSUE Line 431: "unset """" HOLA
+ISSUE Line 432: env | grep HOLA"
+ISSUE Line 433: "unset PATH
+ISSUE Line 434: echo $PATH"
+ISSUE Line 435: "unset PATH
+ISSUE Line 436: cat Makefile"
+ISSUE Line 437: unset =
+ISSUE Line 438: unset ======
+ISSUE Line 439: unset ++++++
+ISSUE Line 440: unset _______
+ISSUE Line 441: unset export
+ISSUE Line 442: unset echo
+ISSUE Line 443: unset pwd
+ISSUE Line 444: unset cd
+ISSUE Line 445: unset unset
+ISSUE Line 446: unset sudo
+ISSUE Line 447: export hola | unset hola | echo $?
+ISSUE Line 448: /bin/echo
+ISSUE Line 449: /bin/echo Hola Que Tal
+ISSUE Line 450: /bin/env
+ISSUE Line 451: /bin/cd Desktop
+ISSUE Line 454: pwd
+ISSUE Line 455: pwd hola
+ISSUE Line 456: pwd ./hola
+ISSUE Line 457: pwd hola que tal
+ISSUE Line 458: pwd -p
+ISSUE Line 459: pwd --p
+ISSUE Line 460: pwd ---p
+ISSUE Line 461: pwd -- p
+ISSUE Line 462: pwd pwd pwd
+ISSUE Line 463: pwd ls
+ISSUE Line 464: pwd ls env
+ISSUE Line 465: cd
+ISSUE Line 466: cd .
+ISSUE Line 467: cd ./
+ISSUE Line 468: cd ./././.
+ISSUE Line 469: cd ././././
+ISSUE Line 470: cd ..
+ISSUE Line 471: cd ../
+ISSUE Line 472: cd ../..
+ISSUE Line 473: cd ../.
+ISSUE Line 474: cd .././././.
+ISSUE Line 475: cd srcs
+ISSUE Line 476: cd srcs objs
+ISSUE Line 477: cd 'srcs'
+ISSUE Line 478: cd "srcs"
+ISSUE Line 479: cd '/etc'
+ISSUE Line 480: cd /e'tc'
+ISSUE Line 481: cd /e"tc"
+ISSUE Line 482: cd sr
+ISSUE Line 483: cd Makefile
+ISSUE Line 485: cd ../../../../../../..
+ISSUE Line 486: cd .././../.././../bin/ls
+ISSUE Line 487: cd /
+ISSUE Line 488: cd '/'
+ISSUE Line 489: "cd //
+ISSUE Line 490: pwd"
+ISSUE Line 491: "cd '//'
+ISSUE Line 492: pwd"
+ISSUE Line 493: "cd ///
+ISSUE Line 494: pwd"
+ISSUE Line 495: "cd ////////
+ISSUE Line 496: pwd"
+ISSUE Line 497: "cd '////////'
+ISSUE Line 498: pwd"
+ISSUE Line 499: cd /minishell
+ISSUE Line 500: "cd /
+ISSUE Line 501: cd .."
+ISSUE Line 502: cd _
+ISSUE Line 503: cd -
+ISSUE Line 504: cd --
+ISSUE Line 505: cd ---
+ISSUE Line 506: cd $HOME
+ISSUE Line 507: cd $HOME $HOME
+ISSUE Line 508: cd $HOME/42_works
+ISSUE Line 509: cd "$PWD/srcs"
+ISSUE Line 510: cd '$PWD/srcs'
+ISSUE Line 511: "unset HOME
+ISSUE Line 512: cd $HOME"
+ISSUE Line 513: "unset HOME
+ISSUE Line 514: export HOME=
+ISSUE Line 515: cd"
+ISSUE Line 516: "unset HOME
+ISSUE Line 517: export HOME
+ISSUE Line 518: cd"
+ISSUE Line 519: cd minishell Docs crashtest.c
+ISSUE Line 520: "   cd / | echo $?
+ISSUE Line 521: pwd"
+ISSUE Line 522: cd ~
+ISSUE Line 523: cd ~/
+ISSUE Line 524: "cd ~/ | echo $?
+ISSUE Line 525: pwd"
+ISSUE Line 526: cd *
+ISSUE Line 527: cd *
+ISSUE Line 528: cd *
+ISSUE Line 529: "mkdir a
+ISSUE Line 530: mkdir a/b
+ISSUE Line 531: cd a/b
+ISSUE Line 532: rm -r ../../a
+ISSUE Line 533: cd .."
+ISSUE Line 534: "mkdir a
+ISSUE Line 535: mkdir a/b
+ISSUE Line 536: cd a/b
+ISSUE Line 537: rm -r ../../a
+ISSUE Line 538: pwd"
+ISSUE Line 539: "mkdir a
+ISSUE Line 540: mkdir a/b
+ISSUE Line 541: cd a/b
+ISSUE Line 542: rm -r ../../a
+ISSUE Line 543: echo $PWD
+ISSUE Line 544: echo $OLDPWD"
+ISSUE Line 545: "mkdir a
+ISSUE Line 546: mkdir a/b
+ISSUE Line 547: cd a/b
+ISSUE Line 548: rm -r ../../a
+ISSUE Line 549: cd
+ISSUE Line 550: echo $PWD
+ISSUE Line 551: echo $OLDPWD"
+ISSUE Line 552: "mkdir a
+ISSUE Line 553: cd a
+ISSUE Line 554: rm -r ../a
+ISSUE Line 555: echo $PWD
+ISSUE Line 556: echo $OLDPWD"
+ISSUE Line 557: "export CDPATH=/
+ISSUE Line 558: cd $HOME/.."
+ISSUE Line 559: "export CDPATH=/
+ISSUE Line 560: cd home/vietdu91"
+ISSUE Line 561: "export CDPATH=./
+ISSUE Line 562: cd ."
+ISSUE Line 563: "export CDPATH=./
+ISSUE Line 564: cd .."
+ISSUE Line 567: ls hola
+ISSUE Line 568: ./Makefile
+ISSUE Line 570: "env | grep SHLVL
+ISSUE Line 572: env | grep SHLVL
+ISSUE Line 573: exit
+ISSUE Line 574: env | grep SHLVL"
+ISSUE Line 575: "touch hola
+ISSUE Line 576: ./hola"
+ISSUE Line 577: env|"wc" -l
+ISSUE Line 578: env|"wc "-l
+ISSUE Line 579: expr 1 + 1
+ISSUE Line 580: expr $? + $?
+ISSUE Line 582: env"
+ISSUE Line 584: export"
+ISSUE Line 586: cd"
+ISSUE Line 588: cd ~"
+ISSUE Line 589: exit
+ISSUE Line 590: exit exit
+ISSUE Line 591: exit hola
+ISSUE Line 592: exit hola que tal
+ISSUE Line 593: exit 42
+ISSUE Line 594: exit 000042
+ISSUE Line 595: exit 666
+ISSUE Line 596: exit 666 666
+ISSUE Line 597: exit -666 666
+ISSUE Line 598: exit hola 666
+ISSUE Line 599: exit 666 666 666 666
+ISSUE Line 600: exit 666 hola 666
+ISSUE Line 601: exit hola 666 666
+ISSUE Line 602: exit 259
+ISSUE Line 603: exit -4
+ISSUE Line 604: exit -42
+ISSUE Line 605: exit -0000042
+ISSUE Line 606: exit -259
+ISSUE Line 607: exit -666
+ISSUE Line 608: exit +666
+ISSUE Line 609: exit 0
+ISSUE Line 610: exit +0
+ISSUE Line 611: exit -0
+ISSUE Line 612: exit +42
+ISSUE Line 613: exit -69 -96
+ISSUE Line 614: exit --666
+ISSUE Line 615: exit ++++666
+ISSUE Line 616: exit ++++++0
+ISSUE Line 617: exit ------0
+ISSUE Line 618: exit "666"
+ISSUE Line 619: exit '666'
+ISSUE Line 620: exit '-666'
+ISSUE Line 621: exit '+666'
+ISSUE Line 622: exit '----666'
+ISSUE Line 623: exit '++++666'
+ISSUE Line 624: exit '6'66
+ISSUE Line 625: exit '2'66'32'
+ISSUE Line 626: exit "'666'"
+ISSUE Line 627: exit '"666"'
+ISSUE Line 628: exit '666'"666"666
+ISSUE Line 629: exit +'666'"666"666
+ISSUE Line 630: exit -'666'"666"666
+ISSUE Line 631: exit 9223372036854775807
+ISSUE Line 632: exit 9223372036854775808
+ISSUE Line 633: exit -9223372036854775808
+ISSUE Line 634: exit -9223372036854775809
+ISSUE Line 635: cat | cat | cat | ls
+
+=== SUMMARY ===
+Total tests analyzed: 634
+Tests with prompt in output: 611
+Parsing error differences: 105
+Builtin command issues: 410
+Redirection issues: 16
+Pipe issues: 9
+Variable expansion issues: 31
+Quote handling issues: 98
+Exit code differences: 268
+

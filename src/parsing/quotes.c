@@ -19,31 +19,6 @@ char ft_check_unclosed_quotes(char *str) {
   return (quote_char);
 }
 
-char *ft_handle_quote_continuation(char *initial_input) {
-  char *line;
-  char *temp;
-  char *result;
-  char unclosed_quote;
-
-  result = ft_strdup(initial_input);
-  if (!result)
-    return (NULL);
-  while ((unclosed_quote = ft_check_unclosed_quotes(result)) != 0) {
-    line = readline("> ");
-    if (!line) {
-      free(result);
-      return (NULL);
-    }
-    temp = result;
-    result = ft_strjoin_with_newline(result, line);
-    free(temp);
-    free(line);
-    if (!result)
-      return (NULL);
-  }
-  return (result);
-}
-
 char *ft_handle_quotes(char *str) {
   char *result;
   int i;

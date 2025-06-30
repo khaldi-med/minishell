@@ -26,7 +26,7 @@ int	ft_exec_builtin(t_shell *shell, char **args)
 	if (ft_strcmp(args[0], "echo") == 0)
 		return (ft_builtin_echo(args));
 	if (ft_strcmp(args[0], "cd") == 0)
-		return (ft_builtin_cd(args));
+		return (ft_builtin_cd(shell, args));
 	if (ft_strcmp(args[0], "pwd") == 0)
 		return (ft_builtin_pwd());
 	if (ft_strcmp(args[0], "export") == 0)

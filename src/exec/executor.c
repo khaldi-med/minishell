@@ -2,9 +2,9 @@
 
 void	ft_exec_cmds(t_shell *shell, t_cmd *cmds)
 {
-	if (!cmds || !cmds->args)
+	if (!cmds)
 		return ;
-	ft_preprocess_heredocs(cmds);
+	// Remove redundant preprocessing since it's already done in main
 	if (!cmds->next)
 		ft_exec_sing_cmd(shell, cmds);
 	else

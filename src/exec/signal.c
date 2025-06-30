@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 
-/* Signal handler for SIGINT (Ctrl+C) */
+int		g_signal = 0;
 void	ft_signal_handler(int sig)
 {
 	if (sig == SIGINT)

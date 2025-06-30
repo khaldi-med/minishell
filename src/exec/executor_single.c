@@ -46,9 +46,21 @@ void	ft_exec_sing_cmd(t_shell *shell, t_cmd *cmd)
 {
 	pid_t	pid;
 
+	// Handle commands with only redirections (like standalone heredocs)
 	if (!cmd->args || !cmd->args[0])
 	{
-		shell->exit_status = 0;
+		if (cmd->redirs)
+		{
+			int saved_stdout, saved_stdin;
+			ft_save_fds(&saved_stdout, &saved_stdin);
+			if (ft_setup_redirections(cmd->redirs) == -1)
+				shell->exit_status = 1;
+			else
+				shell->exit_status = 0;
+			ft_restore_fds(saved_stdout, saved_stdin);
+		}
+		else
+			shell->exit_status = 0;
 		return ;
 	}
 	if (ft_is_builtin(cmd->args[0]))
