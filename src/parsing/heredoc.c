@@ -1,106 +1,88 @@
+
 #include "../../include/minishell.h"
 
-static int	ft_create_heredoc_file(char *delimiter)
+static char	*ft_process_heredoc_line(char *content, char *line)
 {
-	char	*line;
-	char	*content;
 	char	*temp;
-	int		pipefd[2];
+	char	*new_content;
+	char	*line_with_newline;
 
-	if (!delimiter || !*delimiter)
-		return (-1);
-
-	// Create a pipe for heredoc content
-	if (pipe(pipefd) == -1)
-		return (-1);
-
-	content = ft_strdup("");
-	if (!content)
-	{
-		close(pipefd[0]);
-		close(pipefd[1]);
-		return (-1);
-	}
-
-	while (1)
-	{
-		line = readline("> ");
-		if (!line)
-		{
-			printf("\nminishell: warning: here-document delimited by end-of-file (wanted `%s')\n", delimiter);
-			break ;
-		}
-		if (ft_strcmp(line, delimiter) == 0)
-		{
-			free(line);
-			break ;
-		}
-		// Add line to content with newline
-		temp = content;
-		if (ft_strlen(content) > 0)
-			content = ft_strjoin_with_newline(content, line);
-		else
-			content = ft_strjoin(line, "\n");
-		free(temp);
-		free(line);
-		if (!content)
-		{
-			close(pipefd[0]);
-			close(pipefd[1]);
-			return (-1);
-		}
-	}
-
-	// Write content to pipe and close write end
+	temp = content;
+	line_with_newline = ft_strjoin(line, "\n");
+	if (!line_with_newline)
+		return (NULL);
 	if (ft_strlen(content) > 0)
-		write(pipefd[1], content, ft_strlen(content));
-	close(pipefd[1]);
-	free(content);
-
-	return (pipefd[0]); // Return read end for later use
+		new_content = ft_strjoin(content, line_with_newline);
+	else
+		new_content = ft_strdup(line_with_newline);
+	free(temp);
+	free(line_with_newline);
+	return (new_content);
 }
 
-int	ft_preprocess_heredocs(t_cmd *cmds)
+int	ft_process_heredoc_redir(t_redir *redir)
 {
-	t_cmd	*current;
-	t_redir	*redir;
-	int		fd;
 	char	*temp_filename;
-	char	*fd_str;
 
-	current = cmds;
-	while (current)
+	temp_filename = ft_create_heredoc_file(redir->file);
+	if (!temp_filename)
+		return (-1);
+	free(redir->file);
+	redir->file = temp_filename;
+	redir->type = TOKEN_REDIR_IN;
+	return (0);
+}
+
+static int	ft_check_delimiter(char *line, char *delimiter)
+{
+	if (!line)
 	{
-		redir = current->redirs;
-		while (redir)
-		{
-			if (redir->type == TOKEN_HEREDOC)
-			{
-				fd = ft_create_heredoc_file(redir->file);
-				if (fd == -1)
-					return (-1);
-				// Convert fd to string and replace the delimiter with the fd
-				fd_str = ft_itoa(fd);
-				if (!fd_str)
-				{
-					close(fd);
-					return (-1);
-				}
-				temp_filename = ft_strjoin("/dev/fd/", fd_str);
-				free(fd_str);
-				if (!temp_filename)
-				{
-					close(fd);
-					return (-1);
-				}
-				free(redir->file);
-				redir->file = temp_filename;
-				redir->type = TOKEN_REDIR_IN; // Change to input redirection
-			}
-			redir = redir->next;
-		}
-		current = current->next;
+		printf("\nminishell: warning: here-document delimited by end-of-file "
+			"(wanted `%s')\n", delimiter);
+		return (1);
+	}
+	if (ft_strcmp(line, delimiter) == 0)
+	{
+		free(line);
+		return (1);
 	}
 	return (0);
 }
 
+char	*ft_read_heredoc_input(char *delimiter)
+{
+	char	*line;
+	char	*content;
+
+	content = ft_strdup("");
+	if (!content)
+		return (NULL);
+	while (1)
+	{
+		line = readline("> ");
+		if (ft_check_delimiter(line, delimiter))
+			break ;
+		if (!line)
+			break ;
+		content = ft_process_heredoc_line(content, line);
+		free(line);
+		if (!content)
+			return (NULL);
+	}
+	return (content);
+}
+
+char	*ft_create_temp_filename(void)
+{
+	static int	count;
+	char		*count_str;
+	char		*filename;
+
+	count = 0;
+	count_str = ft_itoa(count++);
+	if (!count_str)
+		return (NULL);
+	filename = ft_strjoin("/tmp/minishell_heredoc_", count_str);
+	free(count_str);
+	return (filename);
+}

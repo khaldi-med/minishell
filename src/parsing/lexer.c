@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 static t_token	*ft_handle_pipe(int *i)
@@ -6,29 +7,38 @@ static t_token	*ft_handle_pipe(int *i)
 	return (ft_creat_token("|", TOKEN_PIPE));
 }
 
+static int	ft_find_word_end(char *input, int start)
+{
+	int		i;
+	char	quote;
+
+	i = start;
+	quote = 0;
+	while (input[i])
+	{
+		if (!quote && (input[i] == '\'' || input[i] == '"'))
+			quote = input[i];
+		else if (quote && input[i] == quote)
+			quote = 0;
+		else if (!quote && (input[i] == ' ' || input[i] == '\t'
+				|| input[i] == '<' || input[i] == '>' || input[i] == '|'))
+			break ;
+		i++;
+	}
+	return (i);
+}
+
 static char	*ft_extract_word(char *input, int *i)
 {
 	int		start;
+	int		end;
 	int		len;
 	char	*word;
-	char	quote;
 
 	start = *i;
-	quote = 0;
-	while (input[*i])
-	{
-		if (!quote && (input[*i] == '\'' || input[*i] == '"'))
-			quote = input[*i];
-		else if (quote && input[*i] == quote)
-			quote = 0;
-		else if (!quote &&
-					(input[*i] == ' ' || input[*i] == '\t' || input[*i] == '<'
-							||
-					input[*i] == '>' || input[*i] == '|'))
-			break ;
-		(*i)++;
-	}
-	len = *i - start;
+	end = ft_find_word_end(input, start);
+	*i = end;
+	len = end - start;
 	word = malloc(len + 1);
 	if (!word)
 		return (NULL);

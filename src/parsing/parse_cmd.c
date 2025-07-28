@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 t_cmd	*ft_creat_cmd(void)
@@ -33,4 +34,26 @@ void	ft_add_redir(t_cmd *cmd, t_token_type type, char *file)
 			current = current->next;
 		current->next = new_redir;
 	}
+}
+
+char	**ft_copy_env(char **env)
+{
+	int		i;
+	int		count;
+	char	**new_env;
+
+	i = 0;
+	count = 0;
+	while (env[count])
+		count++;
+	new_env = malloc(sizeof(char *) * (count + 1));
+	if (!new_env)
+		return (NULL);
+	while (i < count)
+	{
+		new_env[i] = ft_strdup(env[i]);
+		i++;
+	}
+	new_env[i] = NULL;
+	return (new_env);
 }

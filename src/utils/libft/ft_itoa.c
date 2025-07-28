@@ -1,3 +1,4 @@
+
 #include "libft.h"
 
 static int	calc_num_len(int num, int *is_negative)
@@ -6,7 +7,7 @@ static int	calc_num_len(int num, int *is_negative)
 	int	temp;
 
 	*is_negative = 0;
-	if (num < 0)
+	if (num < 0) 
 	{
 		*is_negative = 1;
 		num = -num;
@@ -15,7 +16,7 @@ static int	calc_num_len(int num, int *is_negative)
 	len = 0;
 	if (temp == 0)
 		len = 1;
-	else
+	else 
 	{
 		while (temp > 0)
 		{
@@ -54,6 +55,7 @@ char	*ft_itoa(int num)
 	char	*str;
 	int		len;
 	int		is_negative;
+	int		abs_num;
 
 	if (num == INT_MIN)
 		return (ft_strdup("-2147483648"));
@@ -61,6 +63,10 @@ char	*ft_itoa(int num)
 	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
-	fill_num_buffer(str, num < 0 ? -num : num, len, is_negative);
+	if (num < 0)
+		abs_num = -num;
+	else
+		abs_num = num;
+	fill_num_buffer(str, abs_num, len, is_negative);
 	return (str);
 }

@@ -1,9 +1,6 @@
 *.o
-*.md
-*.a
 *.out
 *.s
-minishell
-minishell_tester/
-.marscode/
-
+./minishell
+/.marscode
+/.VScode

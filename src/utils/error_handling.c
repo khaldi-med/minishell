@@ -42,7 +42,7 @@ void	ft_print_file_error(char *filename)
 void	ft_print_syntax_error(char *token)
 {
 	write(STDERR_FILENO, "minishell: ", 11);
-	write(STDERR_FILENO, SYNTAX_ERROR, ft_strlen(SYNTAX_ERROR));
+	write(STDERR_FILENO, MS_SYNTAX_ERROR, ft_strlen(MS_SYNTAX_ERROR));
 	write(STDERR_FILENO, " `", 2);
 	if (token)
 		write(STDERR_FILENO, token, ft_strlen(token));

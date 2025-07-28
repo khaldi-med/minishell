@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 static void	ft_setup_pip_redi(int prev_fd, int *pipfd, t_cmd *current)
@@ -18,28 +19,20 @@ static void	ft_setup_pip_redi(int prev_fd, int *pipfd, t_cmd *current)
 static void	ft_exec_cmd_in_child(t_shell *shell, t_cmd *current)
 {
 	char	*executable_path;
-	
+
 	if (ft_setup_redirections(current->redirs) == -1)
 		exit(1);
-	
-	/* Handle commands with no arguments (like heredoc-only commands) */
 	if (!current->args || !current->args[0])
 		exit(0);
-	
 	if (ft_is_builtin(current->args[0]))
 		exit(ft_exec_builtin(shell, current->args));
-	
-	/* Find executable and handle command not found */
 	executable_path = ft_find_executable(current->args[0], shell->env);
 	if (!executable_path)
 	{
 		ft_print_command_error(current->args[0], CMD_NOT_FOUND);
 		exit(MS_CMD_NOT_FOUND);
 	}
-	
 	execve(executable_path, current->args, shell->env);
-	
-	/* If execve fails, print error and exit */
 	perror(current->args[0]);
 	free(executable_path);
 	exit(1);
@@ -75,7 +68,6 @@ void	ft_exec_pipe(t_shell *shell, t_cmd *cmds)
 	int		prev_fd;
 	t_cmd	*current;
 	pid_t	last_pid;
-	int		status;
 
 	prev_fd = -1;
 	current = cmds;
@@ -88,14 +80,5 @@ void	ft_exec_pipe(t_shell *shell, t_cmd *cmds)
 			prev_fd = pipfd[0];
 		current = current->next;
 	}
-	while (wait(&status) > 0)
-	{
-		if (waitpid(last_pid, &status, WNOHANG) == last_pid)
-		{
-			if (WIFEXITED(status))
-				shell->exit_status = WEXITSTATUS(status);
-			else
-				shell->exit_status = 128 + WTERMSIG(status);
-		}
-	}
+	ft_wait_for_processes(shell, last_pid);
 }

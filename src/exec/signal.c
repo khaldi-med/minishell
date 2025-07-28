@@ -1,12 +1,11 @@
+
 #include "../../include/minishell.h"
 
-int		g_signal = 0;
-void	ft_signal_handler(int sig)
+void	ft_signal_handler(int signum)
 {
-	if (sig == SIGINT)
+	if (signum == SIGINT)
 	{
-		g_signal = SIGINT;
-		write(STDOUT_FILENO, "\n", 1);
+		ft_putstr_fd("\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -22,9 +21,4 @@ void	ft_setup_signals(void)
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
 	signal(SIGQUIT, SIG_IGN);
-}
-
-void	ft_reset_signal(void)
-{
-	g_signal = 0;
 }

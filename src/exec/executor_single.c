@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 static void	ft_save_fds(int *save_stdout, int *save_stdin)
@@ -14,7 +15,25 @@ static void	ft_restore_fds(int saved_stdout, int saved_stdin)
 	close(saved_stdin);
 }
 
-static int	ft_exec_built_with_redir(t_shell *shell, t_cmd *cmd)
+void	ft_handle_no_args(t_shell *shell, t_cmd *cmd)
+{
+	int	saved_stdout;
+	int	saved_stdin;
+
+	if (cmd->redirs)
+	{
+		ft_save_fds(&saved_stdout, &saved_stdin);
+		if (ft_setup_redirections(cmd->redirs) == -1)
+			shell->exit_status = 1;
+		else
+			shell->exit_status = 0;
+		ft_restore_fds(saved_stdout, saved_stdin);
+	}
+	else
+		shell->exit_status = 0;
+}
+
+int	ft_exec_built_with_redir(t_shell *shell, t_cmd *cmd)
 {
 	int	saved_stdout;
 	int	saved_stdin;
@@ -31,7 +50,7 @@ static int	ft_exec_built_with_redir(t_shell *shell, t_cmd *cmd)
 	return (ret);
 }
 
-static void	ft_wait_for_child(pid_t pid, t_shell *shell)
+void	ft_wait_for_child(pid_t pid, t_shell *shell)
 {
 	int	status;
 
@@ -40,45 +59,4 @@ static void	ft_wait_for_child(pid_t pid, t_shell *shell)
 		shell->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 		shell->exit_status = 128 + WTERMSIG(status);
-}
-
-void	ft_exec_sing_cmd(t_shell *shell, t_cmd *cmd)
-{
-	pid_t	pid;
-
-	// Handle commands with only redirections (like standalone heredocs)
-	if (!cmd->args || !cmd->args[0])
-	{
-		if (cmd->redirs)
-		{
-			int saved_stdout, saved_stdin;
-			ft_save_fds(&saved_stdout, &saved_stdin);
-			if (ft_setup_redirections(cmd->redirs) == -1)
-				shell->exit_status = 1;
-			else
-				shell->exit_status = 0;
-			ft_restore_fds(saved_stdout, saved_stdin);
-		}
-		else
-			shell->exit_status = 0;
-		return ;
-	}
-	if (ft_is_builtin(cmd->args[0]))
-	{
-		if (cmd->redirs)
-			shell->exit_status = ft_exec_built_with_redir(shell, cmd);
-		else
-			shell->exit_status = ft_exec_builtin(shell, cmd->args);
-		return ;
-	}
-	pid = fork();
-	if (pid == 0)
-		ft_exec_external_cmd(cmd, shell->env);
-	else if (pid > 0)
-		ft_wait_for_child(pid, shell);
-	else
-	{
-		perror("fork");
-		shell->exit_status = 0;
-	}
 }

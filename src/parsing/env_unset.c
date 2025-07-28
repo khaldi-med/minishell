@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 int	ft_count_remainig_env(char **env, char *key)
@@ -33,8 +34,8 @@ static void	ft_rebuild_env_arry(t_shell *shell, char *key, int count)
 	j = 0;
 	while (shell->env[i])
 	{
-		if (!(ft_strncmp(shell->env[i], key, key_len) == 0 &&
-				shell->env[i][key_len] == '='))
+		if (!(ft_strncmp(shell->env[i], key, key_len) == 0
+				&& shell->env[i][key_len] == '='))
 			new_env[j++] = shell->env[i];
 		else
 			free(shell->env[i]);

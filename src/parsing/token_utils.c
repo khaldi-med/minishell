@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 int	ft_skip_space(char *input, int i)

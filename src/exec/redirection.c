@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 static int	ft_handle_inp_red(char *file)

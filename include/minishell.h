@@ -18,23 +18,12 @@
 #include <unistd.h>
 
 #define MAX_PATH 1024
-#define MAX_ARGS 100
 
 /* Custom error codes */
 #define SUCCESS 0
-#define GENERAL_ERROR 1
-#define MS_SYNTAX_ERROR 2
+#define ERROR 1
+#define SYNTAX_ERROR 2
 #define MS_CMD_NOT_FOUND 127
-
-/* Error types */
-#define ERR_FILE_NOT_FOUND 1
-#define ERR_PERMISSION_DENIED 2
-#define ERR_NOT_A_DIRECTORY 3
-#define ERR_TOO_MANY_ARGS 4
-#define ERR_INVALID_IDENTIFIER 5
-#define ERR_NUMERIC_REQUIRED 6
-#define ERR_UNCLOSED_QUOTE 7
-#define ERR_SYNTAX_TOKEN 8
 
 /* Error message macros */
 #define CMD_NOT_FOUND "command not found"
@@ -44,9 +33,10 @@
 #define TOO_MANY_ARGS "too many arguments"
 #define INVALID_IDENTIFIER "not a valid identifier"
 #define NUMERIC_REQUIRED "numeric argument required"
-#define SYNTAX_ERROR "syntax error near unexpected token"
+#define MS_SYNTAX_ERROR "syntax error near unexpected token"
 #define UNCLOSED_QUOTE "unexpected EOF while looking for matching"
 
+/* Token types */
 typedef enum e_token_type {
   TOKEN_WORD,
   TOKEN_PIPE,
@@ -56,24 +46,35 @@ typedef enum e_token_type {
   TOKEN_HEREDOC,
 } t_token_type;
 
+/* just for norminette*/
+typedef struct s_quote_state {
+  int i;
+  int j;
+  char quote_char;
+} t_quote_state;
+
+/* Token structure */
 typedef struct s_token {
   char *value;
   t_token_type type;
   struct s_token *next;
 } t_token;
 
+/* Redirection structure */
 typedef struct s_redir {
   t_token_type type;
   char *file;
   struct s_redir *next;
 } t_redir;
 
+/* Command structure */
 typedef struct s_cmd {
   char **args;
   t_redir *redirs;
   struct s_cmd *next;
 } t_cmd;
 
+/* Shell structure */
 typedef struct s_shell {
   char **env;
   int exit_status;
@@ -84,20 +85,32 @@ typedef struct s_shell {
 void ft_exec_cmds(t_shell *shell, t_cmd *cmds);
 void ft_exec_sing_cmd(t_shell *shell, t_cmd *cmd);
 void ft_exec_pipe(t_shell *shell, t_cmd *cmds);
+void ft_wait_for_processes(t_shell *shell, pid_t last_pid);
 void ft_exec_external_cmd(t_cmd *cmd, char **env);
 int ft_setup_redirections(t_redir *redirs);
-int ft_is_valid_number(char *str);
+/* int ft_is_valid_number(char *str); */
+int ft_exec_built_with_redir(t_shell *shell, t_cmd *cmd);
+void ft_wait_for_child(pid_t pid, t_shell *shell);
+void ft_handle_no_args(t_shell *shell, t_cmd *cmd);
 
 /* Built-in commands */
 int ft_is_builtin(char *cmd);
 int ft_exec_builtin(t_shell *shell, char **args);
 int ft_builtin_echo(char **args);
 int ft_builtin_cd(t_shell *shell, char **args);
-int ft_builtin_pwd(void);
+int ft_cd_handle_home(char **path, t_shell *shell);
+int ft_cd_handle_oldpwd(char **path, t_shell *shell);
+
+int ft_builtin_pwd(char **args);
 int ft_builtin_export(t_shell *shell, char **args);
 int ft_builtin_unset(t_shell *shell, char **args);
 int ft_builtin_env(t_shell *shell);
 int ft_builtin_exit(t_shell *shell, char **args);
+
+/* Exit utility functions */
+char *ft_strtrim_whitespace(char *str);
+int ft_atol(char *str, long *result);
+int ft_is_valid_exit_arg(char *str);
 
 /* Environment functions */
 char *ft_get_env_value(char **env, char *key);
@@ -106,9 +119,13 @@ void ft_unset_env_value(t_shell *shell, char *key);
 char **ft_copy_env(char **env);
 
 /* Expansion functions */
-char *ft_expand_variables(char *str, t_shell *shell);
+char *ft_expand_variables(char *str, t_shell *shell, t_token_type token_type);
+char *ft_extract_quoted_var(char *str, int *i);
 char *ft_expand_dollar(char *str, int *i, t_shell *shell);
+char *ft_handle_dollar_expansion(char *str, int *i, char *result,
+                                 t_shell *shell);
 char *ft_get_variable_value(char *var, t_shell *shell);
+int ft_in_singlea_q(char *s, int pos);
 
 /* Quote handling */
 char *ft_handle_quotes(char *str);
@@ -121,12 +138,15 @@ int ft_is_executable(char *path);
 
 /* Heredoc functions */
 int ft_preprocess_heredocs(t_cmd *cmds);
+char *ft_create_heredoc_file(char *delimiter);
+void ft_cleanup_heredoc_file(char *filename);
+char *ft_create_temp_filename(void);
+char *ft_read_heredoc_input(char *delimiter);
+int ft_process_heredoc_redir(t_redir *redir);
 
 /* Signal functions */
 void ft_setup_signals(void);
 void ft_signal_handler(int sig);
-void ft_handle_sigint(void);
-void ft_handle_sigquit(void);
 
 /* Lexer and parser functions */
 t_token *ft_tokenize(char *input);
@@ -163,7 +183,7 @@ void ft_print_command_error(char *command, char *message);
 void ft_print_file_error(char *filename);
 void ft_print_syntax_error(char *token);
 int ft_handle_export_error(char *identifier);
-int ft_handle_redirection_error(char *filename, int error_type);
 int ft_is_valid_identifier(char *str);
-
+void ft_print_exit_error(char *arg, char *message);
+int ft_validate_input(t_shell *shell, char *input);
 #endif

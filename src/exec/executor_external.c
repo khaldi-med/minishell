@@ -1,3 +1,4 @@
+
 #include "../../include/minishell.h"
 
 static int	ft_check_file_access(char *path, t_cmd *cmd)
