@@ -117,30 +117,12 @@ minishell/
 - GNU Readline library
 - Make
 
-### On macOS (with Homebrew)
-```bash
-# Install readline if not present
-brew install readline
-
 # Clone the repository
 git clone [your-repository-url]
 cd minishell
 
 # Build the project
 make
-```
-
-### On Linux (Ubuntu/Debian)
-```bash
-# Install dependencies
-sudo apt-get update
-sudo apt-get install build-essential libreadline-dev
-
-# Clone and build
-git clone [your-repository-url]
-cd minishell
-make
-```
 
 ### Build Commands
 ```bash
@@ -198,39 +180,6 @@ minishell$ unset MY_VAR
 minishell$ exit 42
 ```
 
-## 🏗️ Built-in Commands
-
-| Command | Description | Options/Arguments |
-|---------|-------------|-------------------|
-| `echo` | Display text | `-n` (no newline) |
-| `cd` | Change directory | `[directory]`, `~`, `-` (previous) |
-| `pwd` | Print working directory | None |
-| `export` | Set environment variable | `VAR=value` or `VAR` |
-| `unset` | Remove environment variable | `VAR1 [VAR2 ...]` |
-| `env` | Display environment | None |
-| `exit` | Exit shell | `[exit_code]` |
-
-### Built-in Examples
-```bash
-# Echo variations
-minishell$ echo "Hello World"
-minishell$ echo -n "No newline"
-
-# Directory navigation
-minishell$ cd ..
-minishell$ cd ~/Documents
-minishell$ cd -  # Go to previous directory
-
-# Environment management
-minishell$ export DEBUG=1
-minishell$ export  # List all exported variables
-minishell$ unset DEBUG PATH
-
-# Exit with different codes
-minishell$ exit
-minishell$ exit 127
-```
-
 ## 🔍 Implementation Details
 
 ### Architecture
@@ -241,60 +190,6 @@ The shell follows a modular architecture with clear separation of concerns:
 3. **Expansion**: Variable and quote processing
 4. **Execution**: Command execution with proper I/O handling
 
-### Key Components
-
-#### Tokenizer (`lexer.c`)
-- Converts input string into structured tokens
-- Handles operators, words, and special characters
-- Manages quote contexts
-
-#### Parser (`parse.c`, `parse_cmd.c`)
-- Builds command structures from tokens
-- Handles pipes and redirections
-- Creates executable command chains
-
-#### Executor (`executor*.c`)
-- Manages command execution flow
-- Handles built-ins vs external commands
-- Implements pipeline execution with proper process management
-
-#### Built-ins (`builtins*.c`)
-- Implements shell built-in commands
-- Handles environment variable manipulation
-- Provides shell-specific functionality
-
-### Memory Management
-- All dynamically allocated memory is properly freed
-- Comprehensive cleanup functions prevent memory leaks
-- Valgrind-tested for memory safety
-
-### Error Handling
-- Comprehensive error reporting with appropriate exit codes
-- User-friendly error messages
-- Proper handling of edge cases and invalid input
-
-## 🧪 Testing
-
-### Manual Testing
-```bash
-# Test basic commands
-./minishell
-minishell$ ls
-minishell$ echo "test"
-minishell$ pwd
-
-# Test redirections
-minishell$ echo "hello" > test.txt
-minishell$ cat < test.txt
-
-# Test pipes
-minishell$ ls | grep minishell
-
-# Test built-ins
-minishell$ cd /tmp
-minishell$ export TEST=value
-minishell$ env | grep TEST
-```
 
 ### Edge Cases to Test
 - Empty input
@@ -307,44 +202,10 @@ minishell$ env | grep TEST
 - Nested quotes
 - Variable expansion edge cases
 
-## ⚠️ Known Limitations
-
-- **Logical Operators**: `&&` and `||` are not implemented
-- **Wildcards**: `*` expansion is not supported
-- **Job Control**: Background processes (`&`) not implemented
-- **Subshells**: `()` grouping not supported
-- **Advanced Redirections**: `>&`, `<&` not implemented
-- **Command Substitution**: `$()` and backticks not supported
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow the 42 School norminette coding standard
-- Write comprehensive error handling
-- Add appropriate comments for complex logic
-- Test thoroughly before submitting
-- Ensure no memory leaks (use valgrind)
-
 ## 👥 Authors
 
 - **Mohammed** - [@mohkhald](https://github.com/mohkhald) - mohkhald@student.1337.ma
-- **Collaborator** - [@mozahnou](https://github.com/mozahnou) - mozahnou@student.42.fr
-
-## 📜 License
-
-This project is part of the 42 School curriculum. Please respect the academic integrity policies of your institution.
-
-## 🙏 Acknowledgments
-
-- 42 School for the project specifications
-- The GNU Bash manual for reference
-- The Unix/Linux community for documentation and resources
+- **Collaborator** - [@mozahnou](https://github.com/mozahnou) - mozahnou@student.1337.ma
 
 ---
 
