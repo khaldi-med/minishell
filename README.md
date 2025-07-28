@@ -204,8 +204,8 @@ The shell follows a modular architecture with clear separation of concerns:
 
 ## 👥 Authors
 
-- **Mohammed** - [@mohkhald](https://github.com/mohkhald) - mohkhald@student.1337.ma
-- **Collaborator** - [@mozahnou](https://github.com/mozahnou) - mozahnou@student.1337.ma
+- **Mohammed** - [@mohkhald](https://github.com/mohkhald) 
+- **Collaborator** - [@ChimexXy](https://github.com/ChimexXy)
 
 ---
 
